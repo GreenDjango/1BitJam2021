@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/palette_mono.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/shaders/dither.shader" type="Shader" id=5]
 [ext_resource path="res://src/nodes/museum.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/scenes/GameUI.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -24,7 +25,7 @@ shader_param/u_dither_size = 1
 shader_param/u_dither_tex = ExtResource( 3 )
 shader_param/u_color_tex = ExtResource( 2 )
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=4]
 code = "shader_type spatial;
 render_mode unshaded, cull_front;
 
@@ -46,20 +47,20 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 shader_param/enable = true
 shader_param/outline_thickness = 1.0
 shader_param/color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=4]
-next_pass = SubResource( 10 )
+[sub_resource type="SpatialMaterial" id=6]
+next_pass = SubResource( 5 )
 roughness = 0.85
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=7]
 size = Vector2( 50, 50 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.796078, 0.796078, 0.796078, 1 )
 
 [node name="Game" type="Spatial"]
@@ -72,30 +73,34 @@ environment = SubResource( 2 )
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1200, 600 )
 handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
 shadow_atlas_size = 1024
 
-[node name="Spatial" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.59964 )
 
 [node name="Statue" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0.168319, 0 )
 mesh = ExtResource( 4 )
-material/0 = SubResource( 4 )
+material/0 = SubResource( 6 )
 
 [node name="Ground" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
 
 [node name="museum" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource( 8 )]
