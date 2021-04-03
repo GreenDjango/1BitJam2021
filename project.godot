@@ -30,6 +30,7 @@ settings/fps/force_fps=60
 
 [display]
 
+window/size/width=1200
 window/vsync/use_vsync=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
