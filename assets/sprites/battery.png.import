@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ratio.png-09725ce9483c1103e6b86bc267f1b700.stex"
+path="res://.import/battery.png-bb408cb917beb5fb8b252463697a02f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ratio.png"
-dest_files=[ "res://.import/ratio.png-09725ce9483c1103e6b86bc267f1b700.stex" ]
+source_file="res://assets/sprites/battery.png"
+dest_files=[ "res://.import/battery.png-bb408cb917beb5fb8b252463697a02f3.stex" ]
 
 [params]
 

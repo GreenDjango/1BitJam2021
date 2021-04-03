@@ -32,8 +32,6 @@ settings/fps/force_fps=60
 
 window/size/width=1200
 window/vsync/use_vsync=false
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 
 [input]
 
@@ -65,6 +63,8 @@ up={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+quality/filters/anisotropic_filter_level=1
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
