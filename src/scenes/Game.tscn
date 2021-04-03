@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/palette_mono.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/bayer16tile2.png" type="Texture" id=3]
-[ext_resource path="res://assets/models/uploads_files_72531_Winged_Victory.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://src/scenes/EnemyStatue.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/shaders/dither.shader" type="Shader" id=5]
 [ext_resource path="res://src/nodes/museum.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=7]
@@ -24,42 +24,10 @@ shader_param/u_dither_size = 1
 shader_param/u_dither_tex = ExtResource( 3 )
 shader_param/u_color_tex = ExtResource( 2 )
 
-[sub_resource type="Shader" id=9]
-code = "shader_type spatial;
-render_mode unshaded, cull_front;
-
-uniform bool enable = true; // on and off switsch to diesable/enable the outline
-// outline costumization
-uniform float outline_thickness = 0.05; // how thick is the outline?
-uniform vec4 color : hint_color = vec4(0.0); // which color does the outline have?
-
-
-void vertex() {
-	if (enable) {
-	VERTEX += NORMAL*outline_thickness; // apply the outlines thickness	
-	}
-}
-
-void fragment() {
-	if (enable) {
-	ALBEDO = color.rgb; // apply the outlines color
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/enable = true
-shader_param/outline_thickness = 1.0
-shader_param/color = Color( 0, 0, 0, 0 )
-
-[sub_resource type="SpatialMaterial" id=4]
-next_pass = SubResource( 10 )
-roughness = 0.85
-
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=7]
 size = Vector2( 50, 50 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.796078, 0.796078, 0.796078, 1 )
 
 [node name="Game" type="Spatial"]
@@ -82,18 +50,15 @@ hdr = false
 render_target_update_mode = 3
 shadow_atlas_size = 1024
 
-[node name="Spatial" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.59964 )
 
-[node name="Statue" type="MeshInstance" parent="ViewportContainer/Viewport"]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0.168319, 0 )
-mesh = ExtResource( 4 )
-material/0 = SubResource( 4 )
+[node name="EnemyStatue" parent="ViewportContainer/Viewport" instance=ExtResource( 4 )]
 
 [node name="Ground" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
 
 [node name="museum" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )

@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Player
 
 const GRAVITY = -15.8
 var vel = Vector3()
@@ -22,6 +23,7 @@ const SPRINT_ACCEL = 4
 var is_sprinting = false
 
 var flashlight
+var isFlashlight = true
 
 func _ready():
 	camera = $Rotation_Helper/Camera
@@ -88,8 +90,10 @@ func process_input(delta):
 	if Input.is_action_just_pressed("flashlight"):
 		if flashlight.is_visible_in_tree():
 			flashlight.hide()
+			isFlashlight = false
 		else:
 			flashlight.show()
+			isFlashlight = true
 	# ----------------------------------
 
 func process_movement(delta):
@@ -128,3 +132,33 @@ func _input(event):
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
+
+func isFlashlight():
+	return isFlashlight
+
+func isEntityVisible(entity: Spatial): 
+	var fowardDirectionVector = -transform.basis.z
+	var playerToEnemyVector = (entity.translation - translation).normalized()
+	
+	print(acos(fowardDirectionVector.dot(playerToEnemyVector)))
+	if acos(fowardDirectionVector.dot(playerToEnemyVector)) <= deg2rad(60) :
+		print("visible")
+		return true
+	else:
+		print("not visible")
+		return false
+
+func _on_EnemyAgroArea_body_entered(body):
+	if body.is_in_group("Enemies"):
+		body.setIsInPlayerArea(true)
+		body.setTarget(self)
+	else:
+		return
+
+func _on_EnemyAgroArea_body_exited(body):
+	if body.is_in_group("Enemies"):
+		body.setIsInPlayerArea(false)
+	else:
+		return
+	
+	
