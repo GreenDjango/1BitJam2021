@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/palette_mono.png" type="Texture" id=2]
@@ -25,42 +25,10 @@ shader_param/u_dither_size = 1
 shader_param/u_dither_tex = ExtResource( 3 )
 shader_param/u_color_tex = ExtResource( 2 )
 
-[sub_resource type="Shader" id=4]
-code = "shader_type spatial;
-render_mode unshaded, cull_front;
-
-uniform bool enable = true; // on and off switsch to diesable/enable the outline
-// outline costumization
-uniform float outline_thickness = 0.05; // how thick is the outline?
-uniform vec4 color : hint_color = vec4(0.0); // which color does the outline have?
-
-
-void vertex() {
-	if (enable) {
-	VERTEX += NORMAL*outline_thickness; // apply the outlines thickness	
-	}
-}
-
-void fragment() {
-	if (enable) {
-	ALBEDO = color.rgb; // apply the outlines color
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/enable = true
-shader_param/outline_thickness = 1.0
-shader_param/color = Color( 0, 0, 0, 0 )
-
-[sub_resource type="SpatialMaterial" id=6]
-next_pass = SubResource( 5 )
-roughness = 0.85
-
-[sub_resource type="QuadMesh" id=7]
+[sub_resource type="QuadMesh" id=4]
 size = Vector2( 50, 50 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.796078, 0.796078, 0.796078, 1 )
 
 [node name="Game" type="Spatial"]
@@ -92,8 +60,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.59964 )
 
 [node name="Ground" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
 
 [node name="museum" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )
