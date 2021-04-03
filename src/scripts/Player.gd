@@ -1,10 +1,10 @@
 extends KinematicBody
 
-const GRAVITY = -24.8
+const GRAVITY = -15.8
 var vel = Vector3()
-const MAX_SPEED = 20
-const JUMP_SPEED = 18
-const ACCEL = 4.5
+const MAX_SPEED = 4
+const JUMP_SPEED = 5
+const ACCEL = 2
 
 var dir = Vector3()
 
@@ -12,18 +12,20 @@ const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
 var camera
+var cameraAnimation: AnimationPlayer
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.05
+var MOUSE_SENSITIVITY = 0.07
 
-const MAX_SPRINT_SPEED = 30
-const SPRINT_ACCEL = 18
+const MAX_SPRINT_SPEED = 6
+const SPRINT_ACCEL = 4
 var is_sprinting = false
 
 var flashlight
 
 func _ready():
 	camera = $Rotation_Helper/Camera
+	cameraAnimation = $Rotation_Helper/CameraAnimation
 	rotation_helper = $Rotation_Helper
 	flashlight = $Rotation_Helper/Flashlight
 
@@ -42,13 +44,13 @@ func process_input(delta):
 
 	var input_movement_vector = Vector2()
 
-	if Input.is_action_pressed("movement_forward"):
+	if Input.is_action_pressed("up"):
 		input_movement_vector.y += 1
-	if Input.is_action_pressed("movement_backward"):
+	if Input.is_action_pressed("down"):
 		input_movement_vector.y -= 1
-	if Input.is_action_pressed("movement_left"):
+	if Input.is_action_pressed("left"):
 		input_movement_vector.x -= 1
-	if Input.is_action_pressed("movement_right"):
+	if Input.is_action_pressed("right"):
 		input_movement_vector.x += 1
 
 	input_movement_vector = input_movement_vector.normalized()
@@ -61,7 +63,7 @@ func process_input(delta):
 	# ----------------------------------
 	# Jumping
 	if is_on_floor():
-		if Input.is_action_just_pressed("movement_jump"):
+		if Input.is_action_just_pressed("jump"):
 			vel.y = JUMP_SPEED
 	# ----------------------------------
 
@@ -75,7 +77,7 @@ func process_input(delta):
 	# ----------------------------------
 	# ----------------------------------
 	# Sprinting
-	if Input.is_action_pressed("movement_sprint"):
+	if Input.is_action_pressed("sprint"):
 		is_sprinting = true
 	else:
 		is_sprinting = false
@@ -101,15 +103,17 @@ func process_movement(delta):
 
 	var target = dir
 	if is_sprinting:
-			target *= MAX_SPRINT_SPEED
+		target *= MAX_SPRINT_SPEED
 	else:
 		target *= MAX_SPEED
 	
 	var accel
 	if dir.dot(hvel) > 0:
 		accel = ACCEL
+		cameraAnimation.play("CameraBalancing")
 	else:
 		accel = DEACCEL
+		cameraAnimation.stop(true)
 
 	hvel = hvel.linear_interpolate(target, accel * delta)
 	vel.x = hvel.x
@@ -118,7 +122,7 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
+		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = rotation_helper.rotation_degrees
