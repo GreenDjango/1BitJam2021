@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/palette_mono.png" type="Texture" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://assets/models/uploads_files_72531_Winged_Victory.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://src/shaders/dither.shader" type="Shader" id=5]
 [ext_resource path="res://src/nodes/museum.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=7]
 
-[sub_resource type="ProceduralSky" id=7]
+[sub_resource type="ProceduralSky" id=1]
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 7 )
+background_sky = SubResource( 1 )
 background_energy = 0.0
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -52,15 +53,8 @@ hdr = false
 render_target_update_mode = 3
 shadow_atlas_size = 1024
 
-[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 1, 2.5, 2 )
-current = true
-
-[node name="SpotLight" type="SpotLight" parent="ViewportContainer/Viewport/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, 0, 0, 0 )
-shadow_enabled = true
-spot_range = 23.0
-spot_angle = 36.0
+[node name="Spatial" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.59964 )
 
 [node name="Statue" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0.168319, 0 )
@@ -74,17 +68,5 @@ material/0 = SubResource( 6 )
 
 [node name="museum" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport"]
-transform = Transform( -2.10734e-08, -0.707107, 0.707107, -2.10734e-08, 0.707107, 0.707107, -1, 0, -2.98023e-08, 0, 13.3364, 0 )
-visible = false
-light_energy = 0.4
-shadow_enabled = true
-
-[node name="OmniLight" type="OmniLight" parent="ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127789, 4.69484, 3.44151 )
-visible = false
-omni_range = 19.2
-omni_attenuation = 2.54912
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
