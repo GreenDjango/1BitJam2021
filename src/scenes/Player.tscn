@@ -39,6 +39,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 shape = SubResource( 2 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
+transform = Transform( 1, 0.00013537, 0.0002279, -0.000135319, 1, -0.00025314, -0.00022793, 0.000253113, 1, 0, 0, 0 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 

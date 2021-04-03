@@ -117,12 +117,18 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		#rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		(camera as Spatial).rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		(flashlight as Spatial).rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-		var camera_rot = rotation_helper.rotation_degrees
+		#var camera_rot = rotation_helper.rotation_degrees
+		var camera_rot = camera.rotation_degrees
+		var flashlight_rot = flashlight.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
+		flashlight_rot.x = clamp(flashlight_rot.x,-70, 70)
+		camera.rotation_degrees = camera_rot
+		flashlight.rotation_degrees = flashlight_rot
 
 func isFlashlight():
 	return isFlashlight
