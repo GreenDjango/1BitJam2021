@@ -19,6 +19,7 @@ var rotation_helper = null
 onready var audio_footstep1 := $Footstep
 onready var audio_footstep2 := $Footstep2
 onready var audio_footstep3 := $Footstep3
+onready var audio_flashlight := $Flashlight_click
 onready var audio_death := $Death
 
 const MAX_SPRINT_SPEED = 6
@@ -97,10 +98,12 @@ func process_input(_delta):
 			flashlight.hide()
 			_isFlashlight = false
 			playButtonAnimation()
+			flashlight_click()
 		else:
 			flashlight.show()
 			_isFlashlight = true
 			playButtonAnimation()
+			flashlight_click()
 	# ----------------------------------
 	
 	# -----------------------------------
@@ -186,6 +189,10 @@ func foot_step1():
 	audio_footstep1.pitch_scale = rand_range(1, 1.1)
 	audio_footstep1.volume_db = 0.7
 	audio_footstep1.play()
+
+func flashlight_click():
+	audio_flashlight.volume_db = 0.5
+	audio_flashlight.play()
 
 func main_foot_step():
 	if !is_on_floor():

@@ -10,7 +10,7 @@ func _ready():
 
 func _process(delta):
 	if Globals.life > 0 && player.isFlashlight():
-		Globals.life -= delta * 0.05
+		Globals.life -= delta * 0.08
 		if Globals.life < 0:
 			Globals.life = 0
 			
