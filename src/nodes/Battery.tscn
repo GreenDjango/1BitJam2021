@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/models/battery.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://src/scripts/Battery.gd" type="Script" id=2]
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 render_mode unshaded, cull_front;
 
@@ -25,52 +25,51 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/enable = true
 shader_param/outline_thickness = 0.02
 shader_param/color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="SpatialMaterial" id=1]
-next_pass = SubResource( 10 )
+[sub_resource type="SpatialMaterial" id=3]
+next_pass = SubResource( 2 )
 albedo_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
 shader_param/enable = true
 shader_param/outline_thickness = 0.01
 shader_param/color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=2]
-next_pass = SubResource( 11 )
+[sub_resource type="SpatialMaterial" id=5]
+next_pass = SubResource( 4 )
 albedo_color = Color( 0.352941, 0.352941, 0.352941, 1 )
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
 shader_param/enable = true
 shader_param/outline_thickness = 0.01
 shader_param/color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=3]
-next_pass = SubResource( 12 )
+[sub_resource type="SpatialMaterial" id=7]
+next_pass = SubResource( 6 )
 
-[sub_resource type="BoxShape" id=13]
-extents = Vector3( 0.46423, 0.49636, 0.503432 )
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.95829, 0.931949, 0.888513 )
 
-[node name="Battery" type="StaticBody" groups=[
+[node name="Battery" type="Area" groups=[
 "Batteries",
 ]]
-collision_layer = 0
-collision_mask = 0
 script = ExtResource( 2 )
 
-[node name="Battery" type="MeshInstance" parent="."]
+[node name="BatteryMesh" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0512588, 0, 0.0757736 )
 mesh = ExtResource( 1 )
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
-material/2 = SubResource( 3 )
+material/0 = SubResource( 3 )
+material/1 = SubResource( 5 )
+material/2 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.443667, 0 )
-shape = SubResource( 13 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.813505, 0 )
+shape = SubResource( 8 )
+[connection signal="body_entered" from="." to="." method="_on_Battery_body_entered"]

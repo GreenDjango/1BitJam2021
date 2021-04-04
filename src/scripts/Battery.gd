@@ -1,11 +1,8 @@
-extends StaticBody
-
-var isInPlayerArea := false
+extends Area
 
 func _ready():
 	pass
 
-func setIsInPlayerArea(isInArea: bool):
-	isInPlayerArea = isInArea
-	if isInArea == true:
+func _on_Battery_body_entered(body):
+	if body.is_in_group("Player"):
 		Globals.life += 1

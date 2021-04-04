@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/palette_mono.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scenes/GameUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sounds/main_sound.ogg" type="AudioStream" id=9]
+[ext_resource path="res://src/nodes/Battery.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -66,6 +67,9 @@ material/0 = SubResource( 5 )
 
 [node name="museum" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )
+
+[node name="Battery" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -1.67459, 0.604762, 2.35102 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
