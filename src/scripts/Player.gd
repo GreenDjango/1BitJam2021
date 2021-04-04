@@ -27,7 +27,7 @@ const SPRINT_ACCEL = 4
 var is_sprinting = false
 
 var arm = null
-var flashlight = null
+onready var flashlight := $Rotation_Helper/Model/arm/Flashlight
 var _isFlashlight = true
 
 var isEnemyInProxyArea = false
@@ -40,9 +40,11 @@ func _ready():
 	camera = $Rotation_Helper/Camera
 	cameraAnimation = $Rotation_Helper/CameraAnimation
 	rotation_helper = $Rotation_Helper
-	flashlight = $Rotation_Helper/Model/arm/Flashlight
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(_delta):
+	flashlight.light_energy =  ceil(Globals.life) / Globals.default_life
 
 func _physics_process(delta):
 	process_input(delta)
@@ -106,7 +108,7 @@ func process_input(_delta):
 	
 	# -----------------------------------
 	# Death condition
-	if isEnemyInProxyArea && (!_isFlashlight || !isEnemyVisible()):
+	if isEnemyInProxyArea && (!isFlashlight() || !isEnemyVisible()):
 		death()
 
 func process_movement(delta):
@@ -151,7 +153,7 @@ func _input(event):
 		camera.rotation_degrees = camera_rot
 
 func isFlashlight():
-	return _isFlashlight
+	return _isFlashlight && Globals.life > 0
 
 func death():
 	if bodyInProxyArea:

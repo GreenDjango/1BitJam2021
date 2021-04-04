@@ -12,7 +12,16 @@
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.53164, -0.290566, 0.964647 )
 
 [node name="Battery" parent="." instance=ExtResource( 5 )]
-transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -0.670597, 0.0529709, 12.2296 )
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 0.399654, 0.0529709, 18.9925 )
+
+[node name="Battery2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 29.7279, 0.0529709, 13.338 )
+
+[node name="Battery3" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 147.483, 0.0529709, 18.8799 )
+
+[node name="Battery4" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 146.006, 0.0529709, -43.9285 )
 
 [node name="main_museum" parent="." instance=ExtResource( 1 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -32.363, 0, -24.28 )
