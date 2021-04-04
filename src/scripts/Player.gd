@@ -77,6 +77,12 @@ func process_input(_delta):
 	dir += cam_xform.basis.x * input_movement_vector.x
 	# ----------------------------------
 
+	if Input.is_action_pressed("rotate_left"):
+		rotate_y(1.2 * _delta)
+		
+	if Input.is_action_pressed("rotate_right"):
+		rotate_y(-1.2 * _delta)
+
 	# ----------------------------------
 	# Jumping
 	if is_on_floor():
