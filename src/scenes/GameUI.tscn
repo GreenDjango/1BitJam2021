@@ -278,11 +278,14 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EndControl"]
+anchor_left = 0.000541484
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 1.00054
 anchor_bottom = 0.5
-margin_top = -60.0
-margin_bottom = 68.0
+margin_left = 0.64978
+margin_top = -61.2996
+margin_right = 0.64978
+margin_bottom = 66.7004
 custom_fonts/normal_font = SubResource( 15 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
@@ -295,9 +298,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="EndControl"]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.997834
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.997834
 margin_left = -120.0
 margin_top = -104.0
 margin_right = 128.0
