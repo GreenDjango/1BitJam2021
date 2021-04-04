@@ -3,12 +3,13 @@ extends Spatial
 var isEnd := false
 
 onready var gameUI := $CanvasLayer/GameUI
+onready var player : Player = get_tree().get_nodes_in_group("Player")[0]
 
 func _ready():
 	pass
 
 func _process(delta):
-	if Globals.life > 0:
+	if Globals.life > 0 && player.isFlashlight():
 		Globals.life -= delta / 5.0
 		if Globals.life < 0:
 			Globals.life = 0
