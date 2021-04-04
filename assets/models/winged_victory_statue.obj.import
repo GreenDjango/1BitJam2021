@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/winged_victory_statue.obj-2cae2e50c9ea5c86179f840b2743f017.mesh"
+
+[deps]
+
+files=[ "res://.import/winged_victory_statue.obj-2cae2e50c9ea5c86179f840b2743f017.mesh" ]
+
+source_file="res://assets/models/winged_victory_statue.obj"
+dest_files=[ "res://.import/winged_victory_statue.obj-2cae2e50c9ea5c86179f840b2743f017.mesh", "res://.import/winged_victory_statue.obj-2cae2e50c9ea5c86179f840b2743f017.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
