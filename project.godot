@@ -26,7 +26,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="1BitJam"
+config/name="Mutheyum"
+config/description="Horror game where you have to find something in a museum..."
 run/main_scene="res://src/scenes/MainMenu.tscn"
 boot_splash/image="res://assets/splashscreen.png"
 config/icon="res://assets/icon.png"
