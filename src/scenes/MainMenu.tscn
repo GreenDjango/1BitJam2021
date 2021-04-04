@@ -7,9 +7,9 @@
 size = 80
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 1 )
 border_blend = true
 corner_radius_top_left = 5
@@ -18,12 +18,12 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 30
 extra_spacing_top = 3
 extra_spacing_bottom = 3
@@ -70,11 +70,11 @@ margin_left = -43.2354
 margin_top = -30.0291
 margin_right = 44.7646
 margin_bottom = 26.9709
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "PLAY"
 clip_text = true
 __meta__ = {

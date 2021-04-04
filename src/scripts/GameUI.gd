@@ -2,12 +2,14 @@ extends Control
 
 onready var _battery := $BatteryControl/Battery
 onready var _pause := $PauseDialog
+onready var _end := $EndControl
 
 onready var _mouse := $PauseDialog/MouseSensitivity
 onready var _volume := $PauseDialog/GlobalVolume
 
 func _ready():
 	_pause.hide()
+	_end.hide()
 	_mouse.value = Globals.mouse_sensi
 	_mouse.tick_count = int((_mouse.max_value - _mouse.min_value) / _mouse.step)
 	_volume.tick_count = int((_volume.max_value - _volume.min_value) / _volume.step)
@@ -17,7 +19,7 @@ func _process(_delta):
 	_battery.frame = int(ceil(Globals.life))
 
 
-func _input(event):
+func _input(_event):
 	if Globals.justDied == true:
 		return
 	
@@ -29,16 +31,11 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			_pause.show()
 
-	if false && Globals.life <= 0 && event is InputEventKey:
-		if event.pressed:
-			Globals.restart_game()
 
-
-func _on_MuteButton_toggled(button_pressed):
-	if button_pressed:
-		get_tree().call_group("music", "stop")
-	else:
-		get_tree().call_group("music", "play")
+func _on_End():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_pause.hide()
+	_end.show()
 
 
 func _on_MouseSensitivity_value_changed(value : float):

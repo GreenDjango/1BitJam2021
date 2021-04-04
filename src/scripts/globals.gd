@@ -12,7 +12,8 @@ func _ready():
 func restart_game():
 	life = default_life
 	dialog = ""
-	goto_scene("main_menu")
+	justDied = false
+	goto_scene("MainMenu")
 
 func goto_scene(new_scene_name : String):
 # warning-ignore:return_value_discarded

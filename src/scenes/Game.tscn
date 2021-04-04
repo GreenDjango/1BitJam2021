@@ -50,7 +50,7 @@ __meta__ = {
 }
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1200, 600 )
+size = Vector2( 1200, 599 )
 handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
@@ -73,19 +73,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3 )
 transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -1.67459, 0.604762, 2.35102 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 

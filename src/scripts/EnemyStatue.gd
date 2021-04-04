@@ -17,8 +17,8 @@ func _ready():
 	screamerCamera = $ScreamerCamera
 	screamerLight = $ScreamerLight
 
-func _process(_delta):
-	if target == null:
+func _physics_process(_delta):
+	if target == null || Globals.justDied:
 		return
 	
 	isFlashlight = (target as Player).isFlashlight()
