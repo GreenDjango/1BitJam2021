@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/models/battery.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://src/scripts/Battery.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+render_mode unshaded, cull_front;
+
+uniform bool enable = true; // on and off switsch to diesable/enable the outline
+// outline costumization
+uniform float outline_thickness = 0.05; // how thick is the outline?
+uniform vec4 color : hint_color = vec4(0.0); // which color does the outline have?
+
+
+void vertex() {
+	if (enable) {
+	VERTEX += NORMAL*outline_thickness; // apply the outlines thickness	
+	}
+}
+
+void fragment() {
+	if (enable) {
+	ALBEDO = color.rgb; // apply the outlines color
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/enable = true
+shader_param/outline_thickness = 0.02
+shader_param/color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="SpatialMaterial" id=1]
+next_pass = SubResource( 10 )
+albedo_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 9 )
+shader_param/enable = true
+shader_param/outline_thickness = 0.01
+shader_param/color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=2]
+next_pass = SubResource( 11 )
+albedo_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 9 )
+shader_param/enable = true
+shader_param/outline_thickness = 0.01
+shader_param/color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=3]
+next_pass = SubResource( 12 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 0.46423, 0.49636, 0.503432 )
+
+[node name="Battery" type="StaticBody" groups=[
+"Batteries",
+]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Battery" type="MeshInstance" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0512588, 0, 0.0757736 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.443667, 0 )
+shape = SubResource( 13 )
