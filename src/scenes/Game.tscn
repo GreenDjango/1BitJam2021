@@ -32,9 +32,14 @@ environment = SubResource( 2 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 material = SubResource( 3 )
-anchor_top = -0.000810763
-anchor_right = 1.0
-anchor_bottom = 0.999189
+anchor_left = 0.000854797
+anchor_top = -0.00252036
+anchor_right = 1.00085
+anchor_bottom = 0.997479
+margin_left = -1.02576
+margin_top = -1.02576
+margin_right = -1.02576
+margin_bottom = -1.02576
 stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
