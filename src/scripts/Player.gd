@@ -12,9 +12,9 @@ var dir = Vector3()
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
-var camera
+var camera = null
 var cameraAnimation: AnimationPlayer
-var rotation_helper
+var rotation_helper = null
 
 var audio_player: AudioStreamPlayer
 var audio_player2: AudioStreamPlayer
@@ -26,12 +26,12 @@ const MAX_SPRINT_SPEED = 6
 const SPRINT_ACCEL = 4
 var is_sprinting = false
 
-var arm
-var flashlight
+var arm = null
+var flashlight = null
 var _isFlashlight = true
 
 var isEnemyInProxyArea = false
-var bodyInProxyArea
+var bodyInProxyArea = null
 var armAnimation: AnimationPlayer
 
 func _ready():
