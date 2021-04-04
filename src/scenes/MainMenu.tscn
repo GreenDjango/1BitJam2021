@@ -7,7 +7,7 @@
 [ext_resource path="res://src/shaders/dither.shader" type="Shader" id=5]
 [ext_resource path="res://assets/models/winged_victory_statue.obj" type="ArrayMesh" id=6]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/u_bit_depth = 32
 shader_param/u_contrast = 1.0
@@ -16,9 +16,9 @@ shader_param/u_dither_size = 1
 shader_param/u_dither_tex = ExtResource( 4 )
 shader_param/u_color_tex = ExtResource( 3 )
 
-[sub_resource type="Environment" id=13]
+[sub_resource type="Environment" id=2]
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=3]
 code = "shader_type spatial;
 render_mode unshaded, cull_front;
 
@@ -40,25 +40,25 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/enable = true
 shader_param/outline_thickness = 0.5
 shader_param/color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=11]
-next_pass = SubResource( 10 )
+[sub_resource type="SpatialMaterial" id=5]
+next_pass = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=6]
 size = 80
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 extra_spacing_char = 3
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -71,7 +71,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -85,9 +85,9 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -100,7 +100,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=12]
 size = 40
 extra_spacing_top = 3
 extra_spacing_bottom = 3
@@ -108,7 +108,7 @@ extra_spacing_char = 3
 extra_spacing_space = 3
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=13]
 resource_name = "rotate"
 length = 20.0
 loop = true
@@ -135,7 +135,7 @@ __meta__ = {
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-material = SubResource( 3 )
+material = SubResource( 1 )
 anchor_top = -0.003
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -148,7 +148,7 @@ __meta__ = {
 }
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 600, 600 )
+size = Vector2( 600, 601 )
 handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
@@ -158,14 +158,14 @@ __meta__ = {
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport"]
-environment = SubResource( 13 )
+environment = SubResource( 2 )
 
 [node name="RotateHelper" type="Spatial" parent="ViewportContainer/Viewport"]
 
 [node name="MeshInstance" type="MeshInstance" parent="ViewportContainer/Viewport/RotateHelper"]
 transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 mesh = ExtResource( 6 )
-material/0 = SubResource( 11 )
+material/0 = SubResource( 5 )
 
 [node name="SpotLight" type="SpotLight" parent="ViewportContainer/Viewport/RotateHelper"]
 transform = Transform( 0.334984, 0.464658, 0.819682, -0.20996, 0.884882, -0.415813, -0.918533, -0.0328099, 0.393981, 7.13575, 10.0872, 3.31973 )
@@ -189,7 +189,7 @@ margin_left = -176.0
 margin_top = 86.0
 margin_right = 179.0
 margin_bottom = 190.0
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[center][wave amp=35 freq=2.5]M U T H E Y U M [/wave][/center]
 "
@@ -202,19 +202,19 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.49897
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
+anchor_bottom = 0.49897
+margin_left = -196.382
+margin_top = -54.0
+margin_right = 197.618
+margin_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 8 )
-text = "Use Arrow for move,
-space for jump,
-and left clic for switch flashlight"
+custom_fonts/font = SubResource( 7 )
+text = "Use Arrow to move,
+space to jump 
+and left click to switch flashlight"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -230,11 +230,11 @@ margin_top = 123.9
 margin_right = 59.0
 margin_bottom = 181.9
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "PLAY"
@@ -245,5 +245,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotate"
-anims/rotate = SubResource( 14 )
+anims/rotate = SubResource( 13 )
 [connection signal="pressed" from="playButton" to="." method="_on_Button_pressed"]
