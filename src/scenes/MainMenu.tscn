@@ -205,14 +205,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
+margin_left = -197.0
+margin_top = -139.5
+margin_right = 197.0
+margin_bottom = 153.5
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 7 )
-text = "Use Arrow for move,
+text = "You broke into a museum
+ to steal a very rare statue.
+But watch out for the statues,
+they are alive.
+
+Use Arrow for move,
 space for jump,
 and left clic for switch flashlight"
 align = 1
@@ -226,9 +231,9 @@ anchor_top = 0.497452
 anchor_right = 0.5
 anchor_bottom = 0.497452
 margin_left = -56.0
-margin_top = 123.9
+margin_top = 158.9
 margin_right = 59.0
-margin_bottom = 181.9
+margin_bottom = 216.9
 mouse_default_cursor_shape = 2
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )

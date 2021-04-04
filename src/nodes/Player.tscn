@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sounds/footstep/Footstep6.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/nodes/Arm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sounds/footstep/Footstep2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/screamer.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/lampe.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.503059
@@ -122,6 +123,10 @@ bus = "footstep"
 stream = ExtResource( 5 )
 volume_db = -12.0
 bus = "fx"
+
+[node name="Flashlight_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -7.964
 [connection signal="body_entered" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_entered"]
 [connection signal="body_exited" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_exited"]
 [connection signal="area_entered" from="ProxyArea" to="." method="_on_ProxyArea_area_entered"]
