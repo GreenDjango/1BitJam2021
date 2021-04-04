@@ -47,8 +47,10 @@ func _on_GlobalVolume_value_changed(value : float):
 
 
 func _on_MusicSwitch_toggled(button_pressed : bool):
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), button_pressed)
+	var mute = !button_pressed
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), mute)
 
 
 func _on_SoundSwitch_toggled(button_pressed : bool):
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("footstep"), button_pressed)
+	var mute = !button_pressed
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("footstep"), mute)
