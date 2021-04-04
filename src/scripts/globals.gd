@@ -5,6 +5,7 @@ var life := default_life
 var dialog := ""
 var mouse_sensi = 0.07
 var justDied = false
+var is_treasure_found = false
 
 func _ready():
 	randomize()
@@ -12,6 +13,7 @@ func _ready():
 func restart_game():
 	life = default_life
 	dialog = ""
+	is_treasure_found = false
 	goto_scene("MainMenu")
 
 func goto_scene(new_scene_name : String):

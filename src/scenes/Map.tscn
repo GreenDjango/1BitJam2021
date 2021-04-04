@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/nodes/MainMuseum.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/nodes/MayaArtifact.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/nodes/EnemyStatue.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/nodes/Battery.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/nodes/Player.tscn" type="PackedScene" id=6]
@@ -10,11 +11,23 @@
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.53164, -0.290566, 0.964647 )
 
-[node name="EnemyStatue" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.297158, 0, 0.954828, 0, 1, 0, -0.954828, 0, 0.297158, -6.36798, 0, 21.0482 )
-
 [node name="Battery" parent="." instance=ExtResource( 5 )]
 transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -0.670597, 0.0529709, 12.2296 )
 
 [node name="main_museum" parent="." instance=ExtResource( 1 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -32.363, 0, -24.28 )
+
+[node name="EnemyStatue" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.297158, 0, 0.954828, 0, 1, 0, -0.954828, 0, 0.297158, -6.36798, 0, 21.0482 )
+
+[node name="EnemyStatue2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3635, 0, 23.515 )
+
+[node name="EnemyStatue3" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 103.599, 0, -10.954 )
+
+[node name="EnemyStatue4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107.082, 1.37195, 15.6318 )
+
+[node name="ancient_maya_statue" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 137.751, 0, -106.014 )

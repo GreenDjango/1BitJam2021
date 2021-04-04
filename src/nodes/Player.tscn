@@ -55,7 +55,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="SphereShape" id=4]
-radius = 11.3035
+radius = 34.678
 
 [sub_resource type="SphereShape" id=5]
 radius = 2.87249
@@ -124,5 +124,6 @@ volume_db = -12.0
 bus = "fx"
 [connection signal="body_entered" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_entered"]
 [connection signal="body_exited" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_exited"]
+[connection signal="area_entered" from="ProxyArea" to="." method="_on_ProxyArea_area_entered"]
 [connection signal="body_entered" from="ProxyArea" to="." method="_on_ProxyArea_body_entered"]
 [connection signal="body_exited" from="ProxyArea" to="." method="_on_ProxyArea_body_exited"]

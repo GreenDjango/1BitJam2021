@@ -220,5 +220,13 @@ func _on_ProxyArea_body_exited(body):
 	else:
 		return
 
+func _on_ProxyArea_area_entered(area):
+	if area.get_parent().is_in_group("Collectible"):
+		Globals.is_treasure_found = true
+		area.get_parent().pickUp()
+
 func playButtonAnimation():
 	armAnimation.play("ArmatureAction")
+
+
+
