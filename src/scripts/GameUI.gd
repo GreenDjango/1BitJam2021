@@ -53,4 +53,4 @@ func _on_MusicSwitch_toggled(button_pressed : bool):
 
 func _on_SoundSwitch_toggled(button_pressed : bool):
 	var mute = !button_pressed
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("footstep"), mute)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("fx"), mute)

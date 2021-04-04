@@ -16,11 +16,10 @@ var camera = null
 var cameraAnimation: AnimationPlayer
 var rotation_helper = null
 
-var audio_player: AudioStreamPlayer
-var audio_player2: AudioStreamPlayer
-var audio_player3: AudioStreamPlayer
-var tmp_rand = 0
-
+onready var audio_footstep1 := $Footstep
+onready var audio_footstep2 := $Footstep2
+onready var audio_footstep3 := $Footstep3
+onready var audio_death := $Death
 
 const MAX_SPRINT_SPEED = 6
 const SPRINT_ACCEL = 4
@@ -41,9 +40,6 @@ func _ready():
 	cameraAnimation = $Rotation_Helper/CameraAnimation
 	rotation_helper = $Rotation_Helper
 	flashlight = $Rotation_Helper/Model/arm/Flashlight
-	audio_player = $Footstep
-	audio_player2 = $Footstep2
-	audio_player3 = $Footstep3	
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -156,6 +152,7 @@ func isFlashlight():
 
 func death():
 	if bodyInProxyArea:
+		audio_death.play()
 		bodyInProxyArea.displayScreamer()
 		Globals.justDied = true
 		self.hide()
@@ -175,23 +172,23 @@ func _on_EnemyAgroArea_body_exited(body):
 		return
 
 func foot_step3():
-	audio_player3.pitch_scale = rand_range(0.9, 1.1)
-	audio_player3.play()
+	audio_footstep3.pitch_scale = rand_range(0.9, 1.1)
+	audio_footstep3.play()
 
 func foot_step2():
-	audio_player2.pitch_scale = rand_range(1, 1.1)
-	audio_player2.volume_db = 0.6
-	audio_player2.play()
+	audio_footstep2.pitch_scale = rand_range(1, 1.1)
+	audio_footstep2.volume_db = 0.6
+	audio_footstep2.play()
 
 func foot_step1():
-	audio_player.pitch_scale = rand_range(1, 1.1)
-	audio_player.volume_db = 0.7
-	audio_player.play()
+	audio_footstep1.pitch_scale = rand_range(1, 1.1)
+	audio_footstep1.volume_db = 0.7
+	audio_footstep1.play()
 
 func main_foot_step():
 	if !is_on_floor():
 		return
-	tmp_rand = rand_range(0, 2)
+	var tmp_rand = rand_range(0, 2)
 	if tmp_rand < 0.7:
 		foot_step1()
 	elif tmp_rand < 1.3:
