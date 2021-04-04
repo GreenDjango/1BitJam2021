@@ -6,6 +6,7 @@ onready var _end := $EndControl
 
 onready var _mouse := $PauseDialog/MouseSensitivity
 onready var _volume := $PauseDialog/GlobalVolume
+onready var _treasureIcon := $isTreasureFound
 
 func _ready():
 	_pause.hide()
@@ -22,6 +23,12 @@ func _process(_delta):
 func _input(_event):
 	if Globals.justDied == true:
 		return
+	
+	if Globals.is_treasure_found == true:
+		_treasureIcon.show()
+	else:
+		_treasureIcon.hide()
+	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
