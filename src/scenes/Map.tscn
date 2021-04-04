@@ -8,13 +8,13 @@
 [node name="Map" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -7.23601, -0.290566, 0.964647 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.53164, -0.290566, 0.964647 )
 
 [node name="EnemyStatue" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.743425, 0, 0.668819, 0, 1, 0, -0.668819, 0, -0.743425, 17.9255, 0, 11.0373 )
+transform = Transform( 0.297158, 0, 0.954828, 0, 1, 0, -0.954828, 0, 0.297158, -6.36798, 0, 21.0482 )
 
 [node name="Battery" parent="." instance=ExtResource( 5 )]
-transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 0.790102, 0.0529709, 2.35102 )
+transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -0.670597, 0.0529709, 12.2296 )
 
 [node name="main_museum" parent="." instance=ExtResource( 1 )]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -32.363, 0, -24.28 )
