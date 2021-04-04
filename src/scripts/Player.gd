@@ -30,7 +30,12 @@ var arm
 var flashlight
 var _isFlashlight = true
 
+var isEnemyInProxyArea = false
+var bodyInProxyArea: Spatial
+var armAnimation: AnimationPlayer
+
 func _ready():
+	armAnimation = $Rotation_Helper/Model/arm/AnimationPlayer
 	arm = $Rotation_Helper/Model/arm
 	camera = $Rotation_Helper/Camera
 	cameraAnimation = $Rotation_Helper/CameraAnimation
@@ -87,14 +92,21 @@ func process_input(_delta):
 	
 	# ----------------------------------
 	# Turning the flashlight on/off
-	if Input.is_action_just_pressed("flashlight"):
+	if Input.is_action_just_pressed("flashlight") && !armAnimation.is_playing():
 		if flashlight.is_visible_in_tree():
 			flashlight.hide()
 			_isFlashlight = false
+			playButtonAnimation()
 		else:
 			flashlight.show()
 			_isFlashlight = true
+			playButtonAnimation()
 	# ----------------------------------
+	
+	# -----------------------------------
+	# Death condition
+	if isEnemyInProxyArea && (!_isFlashlight || !isEnemyVisible()):
+		death()
 
 func process_movement(delta):
 	dir.y = 0
@@ -137,17 +149,8 @@ func _input(event):
 func isFlashlight():
 	return _isFlashlight
 
-func isEntityVisible(entity: Spatial): 
-	var fowardDirectionVector = -transform.basis.z
-	var playerToEnemyVector = (entity.translation - translation).normalized()
-	
-	print(acos(fowardDirectionVector.dot(playerToEnemyVector)))
-	if acos(fowardDirectionVector.dot(playerToEnemyVector)) <= deg2rad(60) :
-		print("visible")
-		return true
-	else:
-		print("not visible")
-		return false
+func death():
+	print("death")
 
 func _on_EnemyAgroArea_body_entered(body):
 	if body.is_in_group("Enemies"):
@@ -184,3 +187,30 @@ func main_foot_step():
 		foot_step2()
 	else:
 		foot_step3()
+
+func isEnemyVisible():
+	if !bodyInProxyArea:
+		return false
+	var fowardDirectionVector = -transform.basis.z
+	var playerToEnemyVector = (bodyInProxyArea.translation - translation).normalized()
+	
+	if acos(fowardDirectionVector.dot(playerToEnemyVector)) <= deg2rad(60) :
+		return true
+	else:
+		return false
+
+func _on_ProxyArea_body_entered(body):
+	if body.is_in_group("Enemies"):
+		isEnemyInProxyArea = true
+	else:
+		return
+
+
+func _on_ProxyArea_body_exited(body):
+	if body.is_in_group("Enemies"):
+		isEnemyInProxyArea = false
+	else:
+		return
+
+func playButtonAnimation():
+	armAnimation.play("ArmatureAction")

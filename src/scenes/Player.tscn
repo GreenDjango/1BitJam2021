@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/footstep/Footstep2.wav" type="AudioStream" id=2]
@@ -54,7 +54,10 @@ tracks/2/keys = {
 }
 
 [sub_resource type="SphereShape" id=4]
-radius = 8.1792
+radius = 11.3035
+
+[sub_resource type="SphereShape" id=5]
+radius = 2.87249
 
 [node name="Spatial" type="KinematicBody" groups=[
 "Player",
@@ -96,6 +99,11 @@ anims/CameraBalancing = SubResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="EnemyAgroArea"]
 shape = SubResource( 4 )
 
+[node name="ProxyArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="ProxyArea"]
+shape = SubResource( 5 )
+
 [node name="Footstep" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.097
@@ -110,3 +118,5 @@ stream = ExtResource( 2 )
 bus = "footstep"
 [connection signal="body_entered" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_entered"]
 [connection signal="body_exited" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_exited"]
+[connection signal="body_entered" from="ProxyArea" to="." method="_on_ProxyArea_body_entered"]
+[connection signal="body_exited" from="ProxyArea" to="." method="_on_ProxyArea_body_exited"]
