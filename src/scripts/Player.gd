@@ -180,6 +180,8 @@ func foot_step1():
 	audio_player.play()
 
 func main_foot_step():
+	if !is_on_floor():
+		return
 	tmp_rand = rand_range(0, 2)
 	if tmp_rand < 0.7:
 		foot_step1()
