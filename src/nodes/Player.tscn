@@ -84,7 +84,7 @@ transform = Transform( -0.368789, -0.000134215, 0.929515, -0.00474612, 0.999986,
 [node name="Flashlight" type="SpotLight" parent="Rotation_Helper/Model/arm"]
 transform = Transform( -0.332752, -0.00974043, -0.942964, -0.00668296, 0.999947, -0.00797077, 0.942989, 0.0036495, -0.332798, 0.870765, -0.0262871, 0.0910355 )
 shadow_enabled = true
-spot_range = 20.0
+spot_range = 30.0
 spot_attenuation = 1.3
 spot_angle = 40.0
 
