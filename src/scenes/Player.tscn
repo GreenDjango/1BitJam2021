@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/footstep/Footstep2.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sounds/footstep/Footstep6.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.503059
@@ -22,6 +24,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 2.5, 0 ), Vector3( 0, 2.65, 0 ), Vector3( 0, 2.5, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "main_foot_step"
+} ]
 }
 
 [sub_resource type="SphereShape" id=4]
@@ -65,5 +81,18 @@ anims/CameraBalancing = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="EnemyAgroArea"]
 shape = SubResource( 4 )
+
+[node name="Footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.097
+bus = "footstep"
+
+[node name="Footstep2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "footstep"
+
+[node name="Footstep3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "footstep"
 [connection signal="body_entered" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_entered"]
 [connection signal="body_exited" from="EnemyAgroArea" to="." method="_on_EnemyAgroArea_body_exited"]

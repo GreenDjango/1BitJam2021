@@ -18,6 +18,12 @@ var rotation_helper
 
 var MOUSE_SENSITIVITY = 0.07
 
+var audio_player: AudioStreamPlayer
+var audio_player2: AudioStreamPlayer
+var audio_player3: AudioStreamPlayer
+var tmp_rand = 0
+
+
 const MAX_SPRINT_SPEED = 6
 const SPRINT_ACCEL = 4
 var is_sprinting = false
@@ -30,6 +36,9 @@ func _ready():
 	cameraAnimation = $Rotation_Helper/CameraAnimation
 	rotation_helper = $Rotation_Helper
 	flashlight = $Rotation_Helper/Flashlight
+	audio_player = $Footstep
+	audio_player2 = $Footstep2
+	audio_player3 = $Footstep3	
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -157,5 +166,26 @@ func _on_EnemyAgroArea_body_exited(body):
 		body.setIsInPlayerArea(false)
 	else:
 		return
-	
-	
+
+func foot_step3():
+	audio_player3.pitch_scale = rand_range(0.9, 1.1)
+	audio_player3.play()
+
+func foot_step2():
+	audio_player2.pitch_scale = rand_range(1, 1.1)
+	audio_player2.volume_db = 0.6
+	audio_player2.play()
+
+func foot_step1():
+	audio_player.pitch_scale = rand_range(1, 1.1)
+	audio_player.volume_db = 0.7
+	audio_player.play()
+
+func main_foot_step():
+	tmp_rand = rand_range(0, 2)
+	if tmp_rand < 0.7:
+		foot_step1()
+	elif tmp_rand < 1.3:
+		foot_step2()
+	else:
+		foot_step3()
