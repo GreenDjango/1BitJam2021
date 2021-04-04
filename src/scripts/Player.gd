@@ -31,7 +31,7 @@ var flashlight
 var _isFlashlight = true
 
 var isEnemyInProxyArea = false
-var bodyInProxyArea: Spatial
+var bodyInProxyArea
 var armAnimation: AnimationPlayer
 
 func _ready():
@@ -52,7 +52,9 @@ func _physics_process(delta):
 	process_movement(delta)
 
 func process_input(_delta):
-
+	if Globals.justDied == true:
+		return
+	
 	# ----------------------------------
 	# Walking
 	dir = Vector3()
@@ -109,6 +111,9 @@ func process_input(_delta):
 		death()
 
 func process_movement(delta):
+	if Globals.justDied == true:
+		return
+	
 	dir.y = 0
 	dir = dir.normalized()
 
@@ -150,11 +155,15 @@ func isFlashlight():
 	return _isFlashlight
 
 func death():
-	print("death")
+	if bodyInProxyArea:
+		bodyInProxyArea.displayScreamer()
+		Globals.justDied = true
+		self.hide()
 
 func _on_EnemyAgroArea_body_entered(body):
 	if body.is_in_group("Enemies"):
 		body.setIsInPlayerArea(true)
+		bodyInProxyArea = body
 		body.setTarget(self)
 	else:
 		return

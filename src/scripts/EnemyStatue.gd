@@ -7,11 +7,15 @@ var isInPlayerArea = false
 var isFlashlight = true
 
 var statue: MeshInstance
+var screamerCamera: Camera
+var screamerLight: SpotLight
 
 var target: Spatial
 
 func _ready():
 	statue = $Statue
+	screamerCamera = $ScreamerCamera
+	screamerLight = $ScreamerLight
 
 func _process(_delta):
 	if target == null:
@@ -55,3 +59,8 @@ func isVisibleByPlayer(player):
 		return true
 	else:
 		return false
+
+func displayScreamer():
+	screamerCamera.current = true
+	screamerLight.show()
+	

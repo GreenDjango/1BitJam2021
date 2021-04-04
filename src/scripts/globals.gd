@@ -4,6 +4,7 @@ var default_life := 4.0
 var life := default_life
 var dialog := ""
 var mouse_sensi = 0.07
+var justDied = false
 
 func _ready():
 	randomize()

@@ -52,3 +52,11 @@ shape = SubResource( 1 )
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0.168319, 0 )
 mesh = ExtResource( 1 )
 material/0 = SubResource( 4 )
+
+[node name="ScreamerCamera" type="Camera" parent="."]
+transform = Transform( 0.595254, -0.325904, 0.734479, -0.181039, 0.836161, 0.517744, -0.782878, -0.441159, 0.438727, 0.701195, 3.01798, 0.344124 )
+fov = 52.4
+
+[node name="ScreamerLight" type="SpotLight" parent="."]
+transform = Transform( 0.775668, -0.0647588, 0.62781, 0.546068, 0.567626, -0.616125, -0.316462, 0.820736, 0.475652, 0.547944, 2.36758, 0.219056 )
+visible = false

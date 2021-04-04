@@ -18,6 +18,9 @@ func _process(_delta):
 
 
 func _input(event):
+	if Globals.justDied == true:
+		return
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
