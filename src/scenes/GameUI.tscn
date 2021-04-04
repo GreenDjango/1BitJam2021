@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/sprites/battery.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/GameUI.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/switch.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/pin.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/pin-outline.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/tick.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -56,7 +57,7 @@ anti_aliasing = false
 size = 80
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 1 )
 draw_center = false
 border_width_left = 2
@@ -68,19 +69,19 @@ expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 anti_aliasing = false
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxEmpty" id=14]
+[sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 76, 29 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 4 )
 region = Rect2( 76, 0, 76, 29 )
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=14]
 
 [node name="GameUI" type="Control"]
 anchor_right = 1.0
@@ -130,7 +131,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="PauseDialog"]
+[node name="MouseSensitivity" type="HSlider" parent="PauseDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -140,16 +141,22 @@ margin_top = -52.0
 margin_right = 96.0
 margin_bottom = -34.0
 mouse_default_cursor_shape = 2
+custom_icons/tick = ExtResource( 7 )
 custom_icons/grabber_highlight = ExtResource( 6 )
 custom_icons/grabber = ExtResource( 5 )
-custom_styles/slider = SubResource( 12 )
-custom_styles/grabber_area_highlight = SubResource( 13 )
-custom_styles/grabber_area = SubResource( 14 )
+custom_styles/slider = SubResource( 9 )
+custom_styles/grabber_area_highlight = SubResource( 10 )
+custom_styles/grabber_area = SubResource( 11 )
+min_value = 0.01
+max_value = 0.5
+step = 0.02
+value = 0.07
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PauseDialog/HSlider"]
+[node name="Label" type="Label" parent="PauseDialog/MouseSensitivity"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -56.5
@@ -163,26 +170,93 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckButton" type="CheckButton" parent="PauseDialog"]
+[node name="GlobalVolume" type="HSlider" parent="PauseDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 48.0
-margin_top = 44.0
-margin_right = 204.0
-margin_bottom = 84.0
+margin_left = -88.0
+margin_top = 52.0
+margin_right = 96.0
+margin_bottom = 70.0
 mouse_default_cursor_shape = 2
-custom_icons/off = SubResource( 9 )
-custom_icons/on = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
+custom_icons/tick = ExtResource( 7 )
+custom_icons/grabber_highlight = ExtResource( 6 )
+custom_icons/grabber = ExtResource( 5 )
+custom_styles/slider = SubResource( 9 )
+custom_styles/grabber_area_highlight = SubResource( 10 )
+custom_styles/grabber_area = SubResource( 11 )
+min_value = -6.0
+max_value = 12.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseDialog/GlobalVolume"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -56.5
+margin_top = -27.0
+margin_right = 56.5
+margin_bottom = -11.0
+grow_horizontal = 2
+text = "Global volume"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicSwitch" type="CheckButton" parent="PauseDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = 124.0
+margin_right = -43.0
+margin_bottom = 164.0
+mouse_default_cursor_shape = 2
+custom_icons/off = SubResource( 12 )
+custom_icons/on = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_constants/hseparation = 15
+pressed = true
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundSwitch" type="CheckButton" parent="PauseDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 24.0
+margin_top = 124.0
+margin_right = 185.0
+margin_bottom = 164.0
+mouse_default_cursor_shape = 2
+custom_icons/off = SubResource( 12 )
+custom_icons/on = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_constants/hseparation = 15
+pressed = true
 text = "Sound FX"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="value_changed" from="PauseDialog/MouseSensitivity" to="." method="_on_MouseSensitivity_value_changed"]
+[connection signal="value_changed" from="PauseDialog/GlobalVolume" to="." method="_on_GlobalVolume_value_changed"]
+[connection signal="toggled" from="PauseDialog/MusicSwitch" to="." method="_on_MusicSwitch_toggled"]
+[connection signal="toggled" from="PauseDialog/SoundSwitch" to="." method="_on_SoundSwitch_toggled"]

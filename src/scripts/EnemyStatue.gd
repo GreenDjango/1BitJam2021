@@ -13,7 +13,7 @@ var target: Spatial
 func _ready():
 	statue = $Statue
 
-func _process(delta):
+func _process(_delta):
 	if target == null:
 		return
 	
@@ -30,6 +30,7 @@ func _process(delta):
 	if isFollowing:
 		var target_pos = target.global_transform.origin
 		var direction_to_target = (target_pos - global_transform.origin).normalized()
+# warning-ignore:return_value_discarded
 		move_and_slide(direction_to_target * SPEED)
 
 func setIsInPlayerArea(isInArea: bool):
@@ -39,9 +40,11 @@ func setTarget(player: Spatial):
 	if !target:
 		target = player
 
+# Où est appelé cette fonction ?
 func follow():
 	var target_pos = target.global_transform.origin
 	var direction_to_target = (target_pos - global_transform.origin).normalized()
+# warning-ignore:return_value_discarded
 	move_and_slide(direction_to_target * SPEED)
 
 func isVisibleByPlayer(player): 

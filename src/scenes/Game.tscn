@@ -79,3 +79,4 @@ transform = Transform( -0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -
 stream = ExtResource( 9 )
 volume_db = 4.069
 autoplay = true
+bus = "music"

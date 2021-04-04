@@ -16,8 +16,6 @@ var camera
 var cameraAnimation: AnimationPlayer
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.07
-
 var audio_player: AudioStreamPlayer
 var audio_player2: AudioStreamPlayer
 var audio_player3: AudioStreamPlayer
@@ -30,7 +28,7 @@ var is_sprinting = false
 
 var arm
 var flashlight
-var isFlashlight = true
+var _isFlashlight = true
 
 func _ready():
 	arm = $Rotation_Helper/Model/arm
@@ -48,7 +46,7 @@ func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
 
-func process_input(delta):
+func process_input(_delta):
 
 	# ----------------------------------
 	# Walking
@@ -92,10 +90,10 @@ func process_input(delta):
 	if Input.is_action_just_pressed("flashlight"):
 		if flashlight.is_visible_in_tree():
 			flashlight.hide()
-			isFlashlight = false
+			_isFlashlight = false
 		else:
 			flashlight.show()
-			isFlashlight = true
+			_isFlashlight = true
 	# ----------------------------------
 
 func process_movement(delta):
@@ -128,6 +126,7 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		var MOUSE_SENSITIVITY = Globals.mouse_sensi
 		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
@@ -136,7 +135,7 @@ func _input(event):
 		camera.rotation_degrees = camera_rot
 
 func isFlashlight():
-	return isFlashlight
+	return _isFlashlight
 
 func isEntityVisible(entity: Spatial): 
 	var fowardDirectionVector = -transform.basis.z
