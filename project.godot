@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="1BitJam"
-run/main_scene="res://src/scenes/Game.tscn"
+run/main_scene="res://src/scenes/MainMenu.tscn"
 boot_splash/image="res://assets/splashscreen.png"
 config/icon="res://assets/icon.png"
 
