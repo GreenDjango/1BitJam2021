@@ -35,7 +35,7 @@ func _input(_event):
 func _on_End():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_pause.hide()
-	yield(get_tree().create_timer(5.0),"timeout")
+	yield(get_tree().create_timer(3.5),"timeout")
 	_end.show()
 
 
