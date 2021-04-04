@@ -28,14 +28,16 @@ const MAX_SPRINT_SPEED = 6
 const SPRINT_ACCEL = 4
 var is_sprinting = false
 
+var arm
 var flashlight
 var isFlashlight = true
 
 func _ready():
+	arm = $Rotation_Helper/Model/arm
 	camera = $Rotation_Helper/Camera
 	cameraAnimation = $Rotation_Helper/CameraAnimation
 	rotation_helper = $Rotation_Helper
-	flashlight = $Rotation_Helper/Flashlight
+	flashlight = $Rotation_Helper/Model/arm/Flashlight
 	audio_player = $Footstep
 	audio_player2 = $Footstep2
 	audio_player3 = $Footstep3	
@@ -126,18 +128,12 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		#rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		(camera as Spatial).rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		(flashlight as Spatial).rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-		#var camera_rot = rotation_helper.rotation_degrees
-		var camera_rot = camera.rotation_degrees
-		var flashlight_rot = flashlight.rotation_degrees
+		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		flashlight_rot.x = clamp(flashlight_rot.x,-70, 70)
 		camera.rotation_degrees = camera_rot
-		flashlight.rotation_degrees = flashlight_rot
 
 func isFlashlight():
 	return isFlashlight

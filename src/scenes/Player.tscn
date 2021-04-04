@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/footstep/Footstep2.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/sounds/footstep/Footstep6.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/nodes/arm.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.503059
@@ -13,31 +14,43 @@ extents = Vector3( 0.406612, 0.093261, 0.39684 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "CameraBalancing"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera:translation")
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 2.5, 0 ), Vector3( 0, 2.65, 0 ), Vector3( 0, 2.5, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "main_foot_step"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.15, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Model/arm:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.1178, -0.323881, -0.101366 ), Vector3( -0.118, -0.195, -0.101 ), Vector3( -0.1178, -0.323881, -0.101366 ) ]
 }
 
 [sub_resource type="SphereShape" id=4]
@@ -55,24 +68,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 shape = SubResource( 2 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
-transform = Transform( 1, 0.00013537, 0.0002279, -0.000135319, 1, -0.00025314, -0.00022793, 0.000253113, 1, 0, 0, 0 )
+transform = Transform( 1, 0.00013537, 0.0002279, -0.000135502, 1, 0.000549712, -0.000227821, -0.000549739, 1, 0, 2.78521, 0 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 
-[node name="Armature" type="Spatial" parent="Rotation_Helper/Model"]
+[node name="arm" parent="Rotation_Helper/Model" instance=ExtResource( 4 )]
+transform = Transform( -0.368789, -0.000134215, 0.929515, -0.00474612, 0.999986, -0.00173866, -0.929501, -0.00505277, -0.368786, -0.1178, -0.323881, -0.101366 )
 
-[node name="Skeleton" type="Skeleton" parent="Rotation_Helper/Model/Armature"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Rotation_Helper/Model"]
-
-[node name="Camera" type="Camera" parent="Rotation_Helper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
-current = true
-
-[node name="Flashlight" type="SpotLight" parent="Rotation_Helper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+[node name="Flashlight" type="SpotLight" parent="Rotation_Helper/Model/arm"]
+transform = Transform( -0.332752, -0.00974043, -0.942964, -0.00668296, 0.999947, -0.00797077, 0.942989, 0.0036495, -0.332798, 0.870765, -0.0262871, 0.0910355 )
+shadow_enabled = true
 spot_range = 20.0
 spot_attenuation = 1.3
+spot_angle = 40.0
+
+[node name="Camera" type="Camera" parent="Rotation_Helper"]
+transform = Transform( 0.999955, -9.10844e-06, -0.00949033, -0.00027261, 0.999559, -0.0296838, 0.00948642, 0.029685, 0.999514, 0, 0, 0 )
+current = true
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="Rotation_Helper"]
 anims/CameraBalancing = SubResource( 3 )

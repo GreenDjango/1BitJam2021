@@ -47,8 +47,7 @@ func follow():
 func isVisibleByPlayer(player): 
 	var fowardDirectionVector = -player.transform.basis.z
 	var playerToEnemyVector = (translation - player.translation).normalized()
-
-	print(acos(fowardDirectionVector.dot(playerToEnemyVector)))
+	
 	if acos(fowardDirectionVector.dot(playerToEnemyVector)) <= deg2rad(60) :
 		return true
 	else:
