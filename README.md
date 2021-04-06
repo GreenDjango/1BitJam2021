@@ -4,7 +4,7 @@
 
 MUTHEYUM is a **JAM game** for 💻**PC**.
 
-[1-Bit Jam 2021](https://itch.io/jam/1-bit-jam-101) theme is `1 Button`.
+[1-Bit Jam 2021](https://itch.io/jam/1-bit-jam-101) theme is `only black and white pixel` and `1 Button`.
 
 <!--- ![alt text](demo.gif 'Demo bonus') --->
 
